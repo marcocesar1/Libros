@@ -1,19 +1,12 @@
-import mongoose from "mongoose";
-import { ApolloServer } from "apollo-server";
+import Server from "./infra/server/apollo.js";
+import MongoDB from "./infra/mongoose/db.conn.js";
 
-import typeDefs from "./infra/graphql/schema.js";
-import resolvers from "./infra/graphql/resolvers.js";
+const mongo = new MongoDB();
+const server = new Server();
 
 async function main() {
-  await mongoose.connect(
-    "mongodb://root:password@127.0.0.1:27018/biblioteca?authSource=admin"
-  );
-  console.log("MongoDB connected!");
-
-  const server = new ApolloServer({ typeDefs, resolvers });
-
-  const { url } = await server.listen({ port: 4000 });
-  console.log(`Server running at ${url}`);
+  await mongo.connect();
+  server.start();
 }
 
 main().catch(console.error);
