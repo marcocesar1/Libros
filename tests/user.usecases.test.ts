@@ -18,4 +18,34 @@ describe("User UseCases", () => {
     expect(result.name).toBe(createUserDto.name);
     expect(result.email).toBe(createUserDto.email);
   });
+
+  test("should find all users", async () => {
+    const result = await userUseCases.findAll();
+
+    expect(result.length).toBe(3);
+  });
+
+  test("should find a user by id", async () => {
+    const result = await userUseCases.findById("1");
+
+    expect(result.id).toBe("1");
+  });
+
+  test("should update a user", async () => {
+    const updateUserDto: CreateUserDto = {
+      name: "Updated User",
+      email: "updateduser@example.com",
+    };
+
+    const result = await userUseCases.update("1", updateUserDto);
+
+    expect(result.name).toBe(updateUserDto.name);
+    expect(result.email).toBe(updateUserDto.email);
+  });
+
+  test("should delete a user", async () => {
+    const result = await userUseCases.delete("1");
+
+    expect(result.id).toBe("1");
+  });
 });
