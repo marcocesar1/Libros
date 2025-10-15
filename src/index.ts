@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import Server from "./infra/server/apollo.js";
 import MongoDB from "./infra/mongoose/db.conn.js";
 

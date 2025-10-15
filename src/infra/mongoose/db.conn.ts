@@ -2,10 +2,17 @@ import mongoose from "mongoose";
 
 class MongoDB {
   async connect(): Promise<void> {
-    await mongoose.connect(
-      "mongodb://root:password@127.0.0.1:27018/biblioteca?authSource=admin"
-    );
+    const mongoUrl = this.getMongoUrl();
+    if (!mongoUrl) {
+      throw new Error("No se encontró la url de MongoDB");
+    }
+
+    await mongoose.connect(mongoUrl);
     console.log("MongoDB connected!");
+  }
+
+  private getMongoUrl(): string {
+    return process.env.MONGO_URL ?? "";
   }
 }
 
