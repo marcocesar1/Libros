@@ -14,9 +14,15 @@ class Server {
   }
 
   start() {
-    this.server.listen({ port: 4000 }).then(({ url }) => {
+    const port = this.getPort();
+
+    this.server.listen({ port }).then(({ url }) => {
       console.log(`Server running at ${url}`);
     });
+  }
+
+  private getPort() {
+    return process.env.SERVER_PORT ?? 4000;
   }
 }
 
