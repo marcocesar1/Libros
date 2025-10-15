@@ -20,6 +20,10 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "apollo-server": "^3.13.0",
+    "graphql": "^16.11.0",
+    "joi": "^18.0.1",
     "mongoose": "^8.19.1",
     "moongose": "^1.0.0"
   }
