@@ -28,7 +28,7 @@ class MockUserRepository implements UserRepository {
   }
 
   findById(id: string): Promise<User | null> {
-    return Promise.resolve(this.users.find((user) => user.id === id) || null);
+    return Promise.resolve(this.users.find((user) => user.id == id) || null);
   }
 
   findByEmail(email: string): Promise<User | null> {
