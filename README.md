@@ -70,3 +70,13 @@ Server running at http://localhost:4000/
 Si ya cuentas con una instancia de MongoDB en tu máquina, puedes cambiar la URL de la base de datos en el archivo `.env` para que apunte a tu instancia.
 
 ---
+
+## Tests
+
+Para ejecutar los tests, ejecuta el siguiente comando:
+
+```bash
+npm run test
+```
+
+---
