@@ -45,6 +45,15 @@ class UserUseCases {
       throw new InvalidData(inputErrors);
     }
 
+    if (input.email) {
+      const userExist = await this.userRepository.findByEmail(input.email);
+      if (userExist && userExist.id !== id) {
+        throw new InvalidData(
+          `El email ${input.email} ya se encuentra asociado a otro usuario`
+        );
+      }
+    }
+
     const user = await this.userRepository.update(id, input);
     if (!user) {
       throw new NotFound(`No se encontró el usuario con id ${id}`);
